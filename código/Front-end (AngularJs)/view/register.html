@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unascare - Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="register.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="../dist/mask.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" ng-app="myAppRegister" ng-controller="myCtrlRegister" style="overflow: hidden;">
+
+        <div class="container-fluid" style="width: 50vh;">
+
+            <!-- Logo -->
+            <div class="row">
+                <div class="col text-center">
+                    <img ng-src="../resources/imgs/logo-unascare-app.jpg" alt="">
+                </div>
+            </div>
+
+            <!-- Alerta -->
+            <div class="row">
+                <div class="col">
+                    <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-success hide" id="alertSuccess">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Nome Completo</span>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" placeolder="Nome Completo" style="width: 50vh; margin-top: 1vh;">
+                        <input type="text" ng-change="usernameinput=false" ng-model="registerModel.username">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="usernameinput" style="color: #e46d3c"><strong>Insira seu nome</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>CPF</span>
+                </div>
+            </div>
+
+            <!-- Document -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="text" ng-change="cpfinput=false" ng-model="registerModel.document"
+                            ui-mask="999.999.999-99" onkeydown="myFunction()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="cpfinput" style="color: #e46d3c"><strong>{{cpferror}}</strong></span>
+                </div>
+            </div>
+
+            <!-- Alerta -->
+            <div class="row">
+                <div class="col">
+                    <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-warning hide" id="alertRegister">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Email</span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="email" ng-change="emailinput=false" ng-model="registerModel.email">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="emailinput" style="color: #e46d3c"><strong>Insira um email</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Telefone/Celular com DDD</span>
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="text" ng-change="phoneinput=false" ng-model="registerModel.phone"
+                            ui-mask="(99) 99999-9999">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="phoneinput" style="color: #e46d3c"><strong>Insira um telefone</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Senha</span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="password" ng-change="passwordinput=false" ng-model="registerModel.password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="passwordinput" style="color: #e46d3c"><strong>Insira uma senha</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Confirmar a senha</span>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="password" ng-change="confirmpasswordinput=false"
+                            ng-model="registerModel.confirmPassword">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="confirmpasswordinput" style="color: #e46d3c"><strong>{{passworderror}}</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Selecione o UNASP mais próximo</span>
+                </div>
+            </div>
+
+            <!-- Cidade -->
+            <div class="row">
+                <div class="col text-center">
+                    <select class="ui dropdown" style="width: 50vh;" ng-model="registerModel.campus">
+                        <option value="campus1">UNASP Campus São Paulo</option>
+                        <option value="campus2">UNASP Campus Hortolândia</option>
+                        <option value="campus3">UNASP Campus Engenheiro Coelho</option>
+                    </select>
+                    <!-- <div class="ui icon input" style="width: 50vh;">
+                        <input type="text" ng-change="cityinput=false" ng-model="registerModel.city">
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col">
+                    <span ng-if="cityinput" style="color: #e46d3c"><strong>Insira uma cidade</strong></span>
+                </div>
+            </div> -->
+
+            <!-- Login Button -->
+            <div class="row" style="margin-top: 2vh;">
+                <div class="col text-center">
+                    <button class="ui primary button" ng-click="verifyData()" style="width:50vh;">
+                        Cadstrar-se
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cancel Button -->
+            <div class="row" style="margin-top: 1vh;">
+                <div class="col text-center">
+                    <button ng-click="index()" class="ui orange button" style="width:50vh;">
+                        Voltar
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

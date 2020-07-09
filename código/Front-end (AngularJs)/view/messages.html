@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unascare - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="messages.js"></script>
+    <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="../dist/mask.js"></script>
+
+</head>
+
+<body>
+    <div class="container" ng-app="myAppMessages" ng-controller="myMessagesCtrl" style="margin-bottom: 10vh;">
+
+     <div class=" row">
+        <div class="col text-center">
+            <img src="../resources/imgs/logo-unascare-app.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <button class="ui secondary button" ng-click="index()">
+                Voltar
+            </button>
+        </div>
+    </div>
+
+    <div style="margin-top: 9vh;"></div>
+
+    <div class=" ui relaxed divided list">
+        <div class="item" ng-repeat="item in feedList">
+            <i class="large envelope outline middle aligned icon"></i>
+            <div class="content">
+                <strong>{{item.senderName}}</strong> enviou uma mensagem para você sobre
+                <strong>{{item.postTitle}}</strong>
+            </div>
+            <!-- <div class="content" style="margin-top: 2vh;">{{item.title}}</div> -->
+            <div class="content" style="margin-top: 1vh;">{{item.description}}</div>
+            <div class="right floated content">
+                <div class="ui basic button" style="margin-top: 3vh; margin-bottom: 2vh;">Responder</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class=" ui relaxed divided list">
+        <div class="item">
+            <i class="large envelope outline middle aligned icon"></i>
+            <div class="content">
+                <strong>Marcos Ducatti</strong> enviou uma mensagem para você
+            </div>
+            <div class="content" style="margin-top: 1vh;">It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it
+                has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
+                making it look like readable English. Many desktop publishing packages and web page editors now use
+                Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites
+                still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+                on purpose (injected humour and the like).</div>
+            <div class="right floated content">
+                <div class="ui basic button" style="margin-top: 3vh; margin-bottom: 2vh;">Responder</div>
+            </div>
+        </div>
+
+        <div class="item">
+            <i class="large envelope outline middle aligned icon"></i>
+            <div class="content">
+                <strong>Marcos Ducatti</strong> enviou uma mensagem para você
+            </div>
+            <div class="content" style="margin-top: 1vh;">It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it
+                has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
+                making it look like readable English. Many desktop publishing packages and web page editors now use
+                Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites
+                still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+                on purpose (injected humour and the like).</div>
+            <div class="right floated content">
+                <div class="ui basic button" style="margin-top: 3vh;">Responder</div>
+            </div>
+        </div>
+    </div> -->
+
+</body>
+
+</html>

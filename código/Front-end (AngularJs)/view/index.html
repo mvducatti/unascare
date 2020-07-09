@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Unascare - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <script src="index.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+  <script src="../dist/mask.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+  <style>
+    .hide {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body style="overflow: hidden;">
+  <div class="container" ng-app="myApp" ng-controller="myCtrl" style="overflow: hidden; margin-bottom: 10vh;">
+
+    <div class="col text-center">
+      <img ng-src="../resources/imgs/logo-unascare-app.jpg" alt="">
+    </div>
+
+    <div class="row" style="margin-left: 25vh;">
+      <div class="col text-center">
+        <div class="ui link cards">
+          <div class="card" ng-click="changeMenu('aluno')">
+            <div class="image">
+              <img src="/resources/imgs/aluno.png" alt="">
+            </div>
+            <div class="content">
+              <div class="header">Aluno</div>
+            </div>
+          </div>
+          <div class="card" id="doadorClick" ng-click="changeMenu('doador')">
+            <div class="image">
+              <img src="/resources/imgs/doador.png" alt="">
+            </div>
+            <div class="content">
+              <div class="header">Doador</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 2vh; width: 50vh;">
+      <h4 class="ui horizontal divider header" style="margin-top: 3vh;">
+        Entrar
+      </h4>
+    </div>
+
+    <!-- MENU DOADOR -->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+
+
+    <!-- Menu Doador -->
+    <div class="container-fluid" style="margin-top: 2vh; width: 50vh;" ng-if="doador">
+
+      <div class="row">
+        <div class="col">
+          <span>CPF</span>
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div class="row">
+        <div class="col text-center">
+          <div class="ui icon input" style="width: 50vh;">
+            <input type="text" ng-change="cpfinput=false" id="myText" ng-model="login.document" ui-mask="999.999.999-99"
+              onkeydown="myFunction()">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span ng-if="cpfinput" style="color: #e46d3c"><strong>Insira o CPF</strong></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 1vh;">
+        <div class="col">
+          <span>Senha</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="row">
+        <div class="col">
+          <div class="ui icon input" style="width: 50vh;">
+            <input type="password" ng-change="senhainput=false" ng-model="login.password" onkeydown="myFunction()">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span ng-if="senhainput" style="color: #e46d3c"><strong>Insira a senha</strong></span>
+        </div>
+      </div>
+
+      <!-- Alerta -->
+      <div class="row">
+        <div class="col">
+          <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-warning alert-dismissible hide"
+            role="alert" id="alert">
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <div class="row" style="margin-top: 2vh;">
+        <div class="col">
+          <button class="ui primary button" ng-click="teste()" style="width:50vh;">
+            Entrar
+          </button>
+        </div>
+      </div>
+
+      <!-- Registro -->
+      <div class="row" style="margin-top: 1vh;">
+        <div class="col text-center">
+          <span>Não tem login? <strong><a href="register.html">Cadastre-se</a></strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MENU ALUNO -->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+    <!-- --------------------------------------------------------------------------------------------------->
+
+    <!-- Menu Aluno -->
+    <div class="container-fluid" style="margin-top: 2vh; width: 50vh;" ng-if="aluno">
+
+      <div class="row">
+        <div class="col">
+          <span>Registro de Aluno (RA)</span>
+        </div>
+      </div>
+
+      <!-- RA -->
+      <div class="row">
+        <div class="col text-center">
+          <div class="ui icon input" style="width: 50vh;">
+            <input type="text" ng-change="rainput=false" ng-model="aluno.ra" onkeydown="myFunction()">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span ng-if="rainput" style="color: #e46d3c"><strong>Insira o RA</strong></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 1vh;">
+        <div class="col">
+          <span>Senha</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="row">
+        <div class="col">
+          <div class="ui icon input" style="width: 50vh;">
+            <input type="password" ng-change="senhaAlunoinput=false" ng-model="aluno.password" onkeydown="myFunction()">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span ng-if="senhaAlunoinput" style="color: #e46d3c"><strong>Insira a senha</strong></span>
+        </div>
+      </div>
+
+      <!-- Alerta -->
+      <div class="row">
+        <div class="col">
+          <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-warning hide" id="alert">
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <div class="row" style="margin-top: 2vh;">
+        <div class="col">
+          <button class="ui primary button" ng-click="entrarAluno()" style="width:50vh;">
+            Entrar
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

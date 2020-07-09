@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unascare - Create Post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="createPost.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="../dist/mask.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" ng-app="myAppPost" ng-controller="myCtrlPost" style="overflow: hidden; margin-bottom: 10vh;">
+
+        <!-- Logo -->
+        <div class="row">
+            <div class="col text-center">
+                <img ng-src="../resources/imgs/logo-unascare-app.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <button class="ui secondary button" ng-click="index()">
+                    Voltar
+                </button>
+            </div>
+        </div>
+
+        <div class="container-fluid" style="width: 50vh;">
+
+            <!-- Alerta -->
+            <div class="row">
+                <div class="col">
+                    <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-success hide"
+                        id="alertProductSuccess">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <h3><strong>Selecione a Categoria</strong></h3>
+                </div>
+            </div>
+
+            <!-- Feed Principal -->
+            <div text-center class="ui link cards stackable five column grid" style="margin-top: 4vh;">
+                <div class="card" ng-repeat="item in feedList" ng-click="teste(item)">
+                    <div class="image" style="background: transparent">
+                        <img ng-src="{{item.avatar}}" alt="">
+                    </div>
+                    <div class="description">
+                        <p style="margin-top: 1vh;" class="text-center">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-top: 3vh;">
+                <div class="col text-center">
+                    <p>Você selecionou: <strong>{{selected.description}}</strong></p>
+                </div>
+            </div>
+
+            <!-- Alerta -->
+            <div class="row">
+                <div class="col">
+                    <div style="margin-left: 2vh; margin-top: 2vh;" class="alert alert-warning hide" id="alertProduct">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 4vh">
+                <div class="col text-center">
+                    <h3><strong>Informações Adicionais</strong></h3>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 3vh;">
+                <div class="col">
+                    <span>Título</span>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh; margin-top: 1vh;">
+                        <input type="text" ng-change="titleinput=false" ng-model="registerModel.title">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="titleinput" style="color: #e46d3c"><strong>{{titleerror}}</strong></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span>Descrição</span>
+                </div>
+            </div>
+
+            <!-- Document -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="ui icon input" style="width: 50vh;">
+                        <input type="text" ng-change="descriptioninput=false" ng-model="registerModel.description">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span ng-if="descriptioninput" style="color: #e46d3c"><strong>{{descriptionerror}}</strong></span>
+                </div>
+            </div>
+
+            <!-- Confirm Button -->
+            <div class="row" style="margin-top: 2vh;">
+                <div class="col text-center">
+                    <button class="ui primary button" ng-click="verifyData()" style="width:50vh;">
+                        Solicitar Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cancel Button -->
+            <div class="row" style="margin-top: 1vh;">
+                <div class="col text-center">
+                    <button ng-click="index()" class="ui orange button" style="width:50vh;">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

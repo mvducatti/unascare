@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unascare - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="myposts.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="../dist/mask.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container" ng-app="myPosts" ng-controller="myCtrlPosts" style="margin-bottom: 10vh;">
+
+        <div class=" row">
+            <div class="col text-center">
+                <img ng-src="../resources/imgs/logo-unascare-app.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <button class="ui secondary button" ng-click="index()">
+                    Voltar
+                </button>
+            </div>
+        </div>
+
+        <!-- Feed Principal -->
+        <div class="ui cards stackable two column grid" style="margin-top: 4vh;">
+            <div class="card" ng-repeat="item in postList | filter: search">
+                <div class="content">
+                    <div class="right floated author">
+                        <img class="right floated mini ui image" ng-src="{{item.picture}}" alt="">
+                    </div>
+                    <div class="header"><h3>{{item.title}}</h3></div>
+                    <div class="meta">
+                        <h5>{{item.username}}</h5>
+                    </div>
+                    <div class="description" style="margin-top: 2vh;">
+                        <h4>{{item.description}}</h4>
+                    </div>
+                </div>
+                <div class="ui buttons">
+                    <button class="ui blue button"><i class="thumbs up outline icon"></i>Recebi</button>
+                    <div></div>
+                    <button class="ui negative button"><i class="thumbs down outline icon"></i>Não recebi, reativar pedido</button>
+                </div>
+                <button class="ui button"><i class="ban icon"></i>Cancelar Pedido</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unascare - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="main-feed.js"></script>
+    <link rel="shortcut icon" href="/resources/imgs/logounasp.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script src="main-feed.js"></script>
+</head>
+
+<body>
+    <div class="container" ng-app="myAppFeed" ng-controller="myCtrlFeed" style=" margin-bottom: 10vh;"">
+
+    <div class=" row">
+        <div class="col text-center">
+            <img ng-src="../resources/imgs/logo-unascare-app.jpg" alt="">
+        </div>
+    </div>
+
+    <div ng-if="logged == 'aluno'" class="ui fluid three item menu" style="margin-top: 4vh;">
+        <a class="item" href="#" ng-click="menuAction('openMessages')"><i class="envelope icon"></i>Mensagens</a>
+        <a class="item" href="#" ng-click="menuAction('makePost')"><i class="plus icon"></i>Postar Pedido</a>
+        <!-- <a class="item" href="#" ng-click="menuAction('myPosts')"><i class="user icon"></i>Meus Pedidos</a> -->
+        <a class="item" href="#" ng-click="menuAction('logout')"><i class="external alternate icon"></i>Sair</a>
+    </div>
+
+    <div ng-if="logged == 'doador'" class="ui fluid three item menu" style="margin-top: 4vh;">
+        <a class="item" href="#" ng-click="menuAction('openMessages')"><i class="envelope icon"></i>Mensagens</a>
+        <a class="item" href="#" ng-click="menuAction('myPosts')"><i class="user icon"></i>Contribuindo</a>
+        <a class="item" href="#" ng-click="menuAction('logout')"><i class="external alternate icon"></i>Sair</a>
+    </div>
+
+    <!-- Logo -->
+    <div class="container-fluid" style="margin-top: 4vh;">
+
+        <div class="ui fluid icon input">
+            <input type="text" placeholder="Procurar..." ng-model="search">
+            <i class="search icon"></i>
+        </div>
+
+        <!-- Feed Principal -->
+        <div ng-if="logged == 'doador'" class="ui cards stackable three column grid" style="margin-top: 4vh;">
+            <div class="card" ng-repeat="item in feedList | filter: search">
+                <div class="image">
+                </div>
+                <div class="content">
+                    <div class="right floated author">
+                        <img class="right floated mini ui image" ng-src="{{item.picture}}" alt="">
+                    </div>
+                    <div class="header">{{item.title}}</div>
+                    <div class="meta">
+                        <a>{{item.username}}</a>
+                    </div>
+                    <div class="description" style="margin-top: 2vh;  width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;">
+                        {{item.description}}
+                    </div>
+                </div>
+                <button class="ui blue button" ng-click="openModal(item)"><i class="thumbs up outline icon"></i>Quero
+                    Ajudar</button>
+            </div>
+        </div>
+
+        <!-- Feed Principal -->
+        <div ng-if="logged == 'aluno'" class="ui cards stackable two column grid" style="margin-top: 4vh;">
+            <div class="card" ng-repeat="item in feedList | filter: search">
+                <div class="content">
+                    <div class="right floated author">
+                        <img class="right floated mini ui image" ng-src="{{item.picture}}" alt="">
+                    </div>
+                    <div class="header">
+                        <h3>{{item.title}}</h3>
+                    </div>
+                    <div class="meta">
+                        <h5>{{item.username}}</h5>
+                    </div>
+                    <div class="description" style="margin-top: 2vh;">
+                        <h4>{{item.description}}</h4>
+                    </div>
+                </div>
+                <div class="ui buttons">
+                    <button class="ui blue button"><i class="thumbs up outline icon"></i>Recebi</button>
+                    <div></div>
+                    <button class="ui negative button"><i class="thumbs down outline icon"></i>Não recebi, reativar
+                        pedido</button>
+                </div>
+                <button class="ui button"><i class="ban icon"></i>Cancelar Pedido</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Quero Ajudar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 3vh;">
+                    <div class="row">
+                        <div class="col">
+                            <img class="image" style="width: 20%; margin-left: 30vh;" ng-src="{{details.picture}}"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 3vh;">
+                        <div class="col">
+                            <h4><strong>Título</strong>
+                                <h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>{{details.postTitle}}</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1vh;">
+                        <div class="col">
+                            <h4><strong>Descrição</strong></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>{{details.description}}</span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 3vh;">
+                        <div class="col">
+                            <h4><strong>Solicitante</strong></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>{{details.receiverName}}</span>
+                        </div>
+                    </div>
+
+                    <div class="ui horizontal divider" style="margin-top: 2vh;">Quero Doar</div>
+
+                    <div class="row" style="margin-top: 3vh;">
+                        <div class="col text-center">
+                            <h3><strong>Termo de Compromisso</strong>
+                                <h3>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1vh;">
+                        <div class="col text-center">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="example" ng-click="checkBox()">
+                                <label>Comprometo-me publicamente a manter minha decisão de realizar a doação.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui horizontal divider" style="margin-top: 3vh;">Contato para entrega</div>
+
+                    <div class="row" style="margin-top: 3vh;">
+                        <div class="col text-center">
+                            <h3><strong>Mensagem para Combinar Doação</strong>
+                                <h3>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1vh;">
+                        <div class="col">
+                            <span>Título</span>
+                        </div>
+                    </div>
+                    <div class="ui icon input" style="width: 100%;">
+                        <input type="text" ng-model="message.title">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>Mensagem</span>
+                        </div>
+                    </div>
+                    <div class="ui icon input" style="width: 100%; height: 10vh;">
+                        <input type="text" ng-model="message.description">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="ui button" data-dismiss="modal" ng-click="cleandetail()">Cancelar</button>
+                    <button class="ui primary button" ng-click="sendMessage(details)">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
